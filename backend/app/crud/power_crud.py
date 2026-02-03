@@ -11,7 +11,7 @@ def get_powers(db: Session, skip: int = 0, limit: int = 100):
 
 def create_power(db: Session, power: PowerBase):
     db_power = Power(
-        level=power.level,
+        tier=power.tier,
         binary_code=power.binary_code
     )
     db.add(db_power)

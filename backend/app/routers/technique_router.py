@@ -34,12 +34,12 @@ def update_technique(tech_id: UUID, tech: TechniqueUpdate, db: Session = Depends
         raise HTTPException(status_code=404, detail="Technique not found.")
     return updated
 
-@tech_router.delete("/{tech_id}", response_model=TechniqueRead)
+@tech_router.delete("/{tech_id}", status_code=204)
 def delete_technique(tech_id: UUID, db: Session = Depends(get_db)):
     deleted = technique_crud.delete_technique(db, tech_id)
     if not deleted:
         raise HTTPException(status_code=404, detail="Technique not found.")
-    return deleted
+    return 
 
 # ---------- SubTechnique ----------
 

@@ -29,22 +29,22 @@ class FormRead(FormBase):
     id: UUID4
     
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 #Power    
 class PowerBase(BaseModel):    
-    level: int
+    tier: int
     binary_code: str
     
 class PowerUpdate(BaseModel):
-    level: Optional[int] = None
+    tier: Optional[int] = None
     binary_code: Optional[str] = None
     
 class PowerRead(PowerBase):
     id: UUID4
     
     class Config: 
-        orm_mode = True
+        from_attributes = True
 
 #Shape
 class ShapeBase(BaseModel):
@@ -61,7 +61,7 @@ class ShapeRead(ShapeBase):
     id: UUID4
     
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 #Target
 class TargetBase(BaseModel):
@@ -78,7 +78,7 @@ class TargetRead(TargetBase):
     id: UUID4
     
     class Config:
-        orm_mode = True
+        from_attributes = True
         
 #Sub Technique
 class SubTechniqueBase(BaseModel):
@@ -93,7 +93,7 @@ class SubTechniqueRead(SubTechniqueBase):
     id: UUID4
     
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 #Technique
 class TechniqueBase(BaseModel):
@@ -108,7 +108,7 @@ class TechniqueRead(TechniqueBase   ):
     id: UUID4
     sub_techniques: List[SubTechniqueRead] = []    
     class Config: 
-        orm_mode = True
+        from_attributes = True
 
 #Spell
 class SpellBase(BaseModel):
@@ -139,4 +139,4 @@ class SpellRead(SpellBase):
     technique: TechniqueRead
     
     class Config:
-        orm_mode = True
+        from_attributes = True

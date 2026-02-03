@@ -24,7 +24,7 @@ class Power(Base):
     __tablename__ = "powers" 
     
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, unique=True, nullable=False)
-    level = Column(Integer, nullable=False)
+    tier = Column(Integer, nullable=False, unique=True)
     binary_code = Column(String, nullable=False)
     
     spells = relationship("Spell", back_populates="power")

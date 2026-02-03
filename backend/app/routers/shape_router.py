@@ -31,9 +31,9 @@ def update_shape(shape_id: UUID, shape: ShapeUpdate, db: Session = Depends(get_d
         raise HTTPException(status_code=404, detail="Shape not found.")
     return updated
 
-@shape_router.delete("/{shape_id}", response_model=ShapeRead)
+@shape_router.delete("/{shape_id}", status_code=204)
 def delete_shape(shape_id: UUID, db: Session = Depends(get_db)):
     deleted = shape_crud.delete_shape(db, shape_id)
     if not deleted:
         raise HTTPException(status_code=404, detail="Shape not found.")
-    return deleted
+    return 

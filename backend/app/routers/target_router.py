@@ -31,9 +31,9 @@ def update_target(target_id: UUID, target: TargetUpdate, db: Session = Depends(g
         raise HTTPException(status_code=404, detail="Target not found.")
     return updated
 
-@target_router.delete("/{target_id}", response_model=TargetRead)
+@target_router.delete("/{target_id}", status_code=204)
 def delete_target(target_id: UUID, db: Session = Depends(get_db)):
     deleted = target_crud.delete_target(db, target_id)
     if not deleted:
         raise HTTPException(status_code=404, detail="Target not found.")
-    return deleted
+    return

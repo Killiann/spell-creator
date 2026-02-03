@@ -32,10 +32,10 @@ def update_form(form_id: UUID, form: FormUpdate, db: Session=Depends(get_db)):
         raise HTTPException(status_code=404, detail="Form not found.")
     return updated
     
-@form_router.delete("/{form_id}", response_model=FormRead)
+@form_router.delete("/{form_id}", status_code=204)
 def delete_Form(form_id: UUID, db: Session=Depends(get_db)):
     deleted=form_crud.delete_form(db, form_id)
     if not deleted:
         raise HTTPException(status_code=404, detail="Form not found.")
-    return deleted
+    return 
     

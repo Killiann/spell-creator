@@ -32,9 +32,9 @@ def update_power(power_id: UUID, power: PowerUpdate, db: Session = Depends(get_d
         raise HTTPException(status_code=404, detail="Power not found.")
     return updated
 
-@power_router.delete("/{power_id}", response_model=PowerRead)
+@power_router.delete("/{power_id}", status_code=204)
 def delete_power(power_id: UUID, db: Session = Depends(get_db)):
     deleted = power_crud.delete_power(db, power_id)
     if not deleted:
         raise HTTPException(status_code=404, detail="Power not found.")
-    return deleted
+    return

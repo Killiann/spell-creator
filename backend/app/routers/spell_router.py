@@ -31,9 +31,9 @@ def update_spell(spell_id: UUID, spell: SpellUpdate, db: Session = Depends(get_d
     if not updated: 
         raise HTTPException(status_code=404, detail="Spell not found.")
     
-@spell_router.delete("/{spell_id}", response_model=SpellRead)
+@spell_router.delete("/{spell_id}", status_code=204)
 def delete_spell(spell_id: UUID, db: Session = Depends(get_db)):
     deleted = spell_crud.delete_spell(db, spell_id)
     if not deleted:
         raise HTTPException(status_code=404, detail="Spell not found.")
-    return deleted
+    return
