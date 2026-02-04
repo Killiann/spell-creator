@@ -6,6 +6,9 @@ from app.schemas import SpellUpdate, SpellCreate
 def get_spell(db: Session, spell_id: UUID):
     return db.query(Spell).filter(Spell.id == spell_id).first()
 
+def get_spell_by_name(db: Session, spell_name: str):
+    return db.query(Spell).filter(Spell.name == spell_name).first()
+
 def get_spells(db: Session, skip: int=0, limit: int=100):
     return db.query(Spell).offset(skip).limit(limit).all()
 

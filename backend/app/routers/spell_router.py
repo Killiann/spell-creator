@@ -14,8 +14,15 @@ def read_spells(skip: int = 0, limit: int=100, db: Session = Depends(get_db)):
     spells = spell_crud.get_spells(db, skip=skip, limit=limit)
     return spells
 
-@spell_router.get("/{spell_id}", response_model=SpellRead)
-def read_spell(spell_id: UUID, db: Session = Depends(get_db)):
+@spell_router.get("/{spell_name}", response_model=SpellRead)
+def read_spell(spell_name: str, db: Session = Depends(get_db)):
+    spell = spell_crud.get_spell_by_name(db, spell_name)
+    if not spell:
+        raise HTTPException(status_code=404, detail="Spell not found.")
+    return spell
+
+@spell_router.get("/id/{spell_id}", response_model=SpellRead)
+def read_spell(spell_id: str, db: Session = Depends(get_db)):
     spell = spell_crud.get_spell(db, spell_id)
     if not spell:
         raise HTTPException(status_code=404, detail="Spell not found.")

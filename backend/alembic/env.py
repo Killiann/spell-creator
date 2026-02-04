@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 from dotenv import load_dotenv
 
 from logging.config import fileConfig
@@ -10,8 +11,13 @@ from alembic import context
 
 config = context.config
 
-#load environment variables from .env
-load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), "..", ".env"))
+# Root of the repo
+BASE_DIR = Path(__file__).resolve().parent.parent.parent 
+print(BASE_DIR)
+
+# Choose which env file to load
+env_file = os.getenv("ENV_FILE", BASE_DIR / ".env.dev")
+load_dotenv(BASE_DIR / env_file)
 
 #set the SQLAlchemy URL dynamically
 from alembic import context
