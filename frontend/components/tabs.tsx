@@ -11,7 +11,7 @@ export default function Tabs({ tabs }: { tabs: Tab[] }) {
     const[activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <div className="flex flex-col h-full w-150">
+    <div className="flex flex-col h-full">
       {/* Tab buttons */}
       <div className="flex border-b shrink-0">
         {tabs.map((tab, index) => (
